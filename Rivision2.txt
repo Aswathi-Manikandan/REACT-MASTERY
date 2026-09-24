@@ -99,3 +99,54 @@ CSR vs SSR in React :
         Common for SPAs	                                        Common for SEO/content-heavy applications
         Server sends application resources	                    Server generates HTML for the request
         Browser does more rendering work	                    Server does more rendering work
+
+What is an SPA? :
+    A Single Page Application is a web application where the browser initially loads one main HTML page, and
+    then JavaScript/React updates the content as the user navigates without doing a full page reload for every route.
+
+What is React Router? :
+    React Router is a library used to handle navigation and routing in React applications.
+
+BrowserRouter
+    <BrowserRouter>
+    It provides the routing context to the React application and uses the browser's URL/history APIs for navigation.
+
+Routes
+    <Routes>
+    It contains the application's route definitions.
+
+Route
+    <Route path="/products" element={<Products />} />
+    It basically says:
+    When the URL matches /products, render the Products component
+
+Navigation with Link:
+
+    Instead of using a normal anchor:
+    <a href="/products">Products</a>
+
+    React Router provides:
+
+    import { Link } from "react-router-dom";
+
+    <Link to="/products">Products</Link>
+
+    Link is designed for client-side navigation in a React Router application.
+
+What is Outlet?:
+    Outlet is a component provided by React Router that acts as a placeholder 
+    where a child route's component will be rendered.
+
+Outlet vs Route :
+    Route defines which component should render for a path.
+
+    <Route path="profile" element={<Profile />} />
+
+    Outlet defines where that child component should appear inside the parent.
+
+    <Outlet />
+
+    So:
+
+    Route   → What should render?
+    Outlet  → Where should the child render?
