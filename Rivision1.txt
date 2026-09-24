@@ -361,7 +361,7 @@ State can be different types :
 
         Array
         const [products, setProducts] = useState([]);
-        
+
         Object
         const [user, setUser] = useState({
         name: "Aswathi",
@@ -369,3 +369,128 @@ State can be different types :
         });
 
         So state can hold different kinds of data.
+
+Never directly modify state : 
+        Suppose:
+
+        const [count, setCount] = useState(0);
+
+        Don't do:
+
+        count = count + 1;
+
+        Instead:
+
+        setCount(count + 1);
+
+        Why?
+
+        Because the setter function tells React that the state needs to be updated.
+
+State vs Normal Variable :
+        Normal variable
+        let count = 0;
+
+        Changing it does not itself tell React to update the UI.
+        State
+        const [count, setCount] = useState(0);
+
+        Updating it through the setter tells React to schedule an update.
+
+        So:
+        Normal variable
+        → ordinary JavaScript data
+
+        State
+        → React-managed data that can trigger UI updates when updated
+
+Multiple states :
+        A component can have multiple state variables.
+
+        const [name, setName] = useState("");
+        const [age, setAge] = useState(0);
+        const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+        So one component can manage different pieces of state.
+
+State updates can be based on previous state :
+        Suppose you want to increase a counter.
+
+        You can write:
+        setCount(count + 1);
+
+        But when the new state depends on the previous state, React provides the functional updater form:
+
+        setCount(prevCount => prevCount + 1);
+
+        Here:
+
+        prevCount
+        ↓
+        previous state value
+
+        This is particularly useful when multiple updates may be queued.
+
+Props in React :
+        Props = Properties
+
+        Props are used to pass data from one component to another component, mainly from 
+        parent component → child component.
+
+        Think of it like giving information to a child component.
+
+        For example:
+        function App() {
+        return <User name="Aswathi" age={22} />;
+        }
+
+        function User(props) {
+        return (
+        <h1>
+        My name is {props.name} and I am {props.age} years old
+        </h1>
+        );
+        }
+
+        Here:
+        <User name="Aswathi" age={22} />
+
+        The App component is the parent.
+
+        User is the child.
+
+        The parent sends:
+
+        name → Aswathi
+        age  → 22
+
+        These values are received by the child through props.
+
+How does data flow? 
+        Parent
+        ↓
+        Props
+        ↓
+        Child
+
+Props can contain different types of data
+
+        Props can pass:
+
+        String
+        Number
+        Boolean
+        Array
+        Object
+        Function
+        JSX
+
+        Example:
+
+        <User
+        name="Aswathi"
+        age={22}
+        isStudent={true}
+        skills={["JS", "React"]}
+        user={{ city: "Kochi" }}
+        />
