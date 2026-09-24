@@ -1,0 +1,34 @@
+React js :
+        React.js is a JavaScript library used to build user interfaces, especially interactive and dynamic 
+        web applications.It was originally developed by Facebook (now Meta).
+Library  :
+        A library is a collection of pre-written and reusable code that developers can use in their applications 
+        to perform specific tasks instead of implementing everything from scratch. It helps reduce development 
+        time and makes development easier.
+        For example, you want to build a UI.
+
+        Without a library:
+
+        You write everything yourself
+                ↓
+        More code
+                ↓
+        More work
+
+        With a library:
+
+        Library provides ready-made functionality
+                ↓
+        You use it in your application
+                ↓
+        Less code + easier development
+
+        React is a library.
+
+        Instead of manually handling every part of UI creation and updates, React gives you tools/concepts such as:
+
+        Components
+        State
+        Props
+        Hooks
+        Rendering
