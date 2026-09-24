@@ -325,3 +325,47 @@ The complete model :
                                Reconciliation
                                       ↓
                                 Updated UI
+
+React State : 
+        State is data that belongs to a component and can change over time.
+
+Why do we need State? :
+        For example:
+
+        let count = 0;
+
+        function increase() {
+        count++;
+        }
+
+        The value changes:
+
+        0 → 1
+
+        But React doesn't automatically know that the UI needs to update just because a normal variable changed.
+
+        That's where state comes in.
+
+        When you update React state, React is informed that the component's data has changed and it can 
+        update the UI accordingly.
+
+State can be different types :
+        String
+        const [name, setName] = useState("");
+
+        Number
+        const [count, setCount] = useState(0);
+
+        Boolean
+        const [isOpen, setIsOpen] = useState(false);
+
+        Array
+        const [products, setProducts] = useState([]);
+        
+        Object
+        const [user, setUser] = useState({
+        name: "Aswathi",
+        age: 25
+        });
+
+        So state can hold different kinds of data.
