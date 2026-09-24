@@ -1,0 +1,327 @@
+React js :
+        React.js is a JavaScript library used to build user interfaces, especially interactive and dynamic 
+        web applications.It was originally developed by Facebook (now Meta).
+Library  :
+        A library is a collection of pre-written and reusable code that developers can use in their applications 
+        to perform specific tasks instead of implementing everything from scratch. It helps reduce development 
+        time and makes development easier.
+        For example, you want to build a UI.
+
+        Without a library:
+
+        You write everything yourself
+                ↓
+        More code
+                ↓
+        More work
+
+        With a library:
+
+        Library provides ready-made functionality
+                ↓
+        You use it in your application
+                ↓
+        Less code + easier development
+
+        React is a library.
+
+        Instead of manually handling every part of UI creation and updates, React gives you tools/concepts such as:
+
+        Components
+        State
+        Props
+        Hooks
+        Rendering
+
+Dynamic Web Application :
+        Dynamic means the content or behavior of the webpage can change based on user actions, data, or other
+        conditions.
+        User action / Data
+        ↓
+        Application processes it
+        ↓
+        UI changes
+
+        Examples:
+
+        Amazon
+        YouTube
+        Instagram
+        Online banking
+        Chat applications
+
+Static Web Application :
+        Static means something that stays the same.
+        A static website is a website where the content is mostly fixed and the same content is served to 
+        users unless the developer manually changes the files.
+
+Framework :
+        A framework is a structured foundation for building an application. It provides predefined rules, tools, and 
+        features, and usually gives you a particular way to organize and develop your application.
+        With a framework, the framework provides the overall structure and controls more of the application flow.
+
+        Framework
+        ↓
+        provides structure
+        ↓
+        Your application
+
+Features of React.js :
+        =>Component-Based Architecture
+        =>Reusable Components
+        =>Declarative UI
+        =>JSX
+        =>Virtual DOM
+        =>Reconciliation
+        =>One-Way Data Flow
+        =>Props
+        =>State Management
+        =>Efficient UI Updates
+        =>Event Handling
+        =>Hooks
+        =>Large Ecosystem
+        =>Server-Side Rendering Support
+        =>Easy Integration with Other Libraries
+
+React Component :
+        A component is a reusable, independent piece of UI in a React application.
+
+        Think about a webpage:
+
+                E-commerce App
+                │
+        ┌─────────┼─────────┐
+        ↓         ↓         ↓
+        Navbar    Products    Cart
+                │
+                ↓
+                Product Card
+        
+        Instead of writing the entire application as one huge piece of code, we divide it into smaller pieces.
+        Each piece is a component.
+
+Why do we need Components?
+
+        Imagine an application with 100 different UI sections.
+
+        If everything is written inside one huge component:
+
+        App
+        │
+        ├── 5000 lines
+        ├── 5000+ lines
+        └── more code
+
+        It becomes difficult to:
+
+        Understand
+        Maintain
+        Debug
+        Reuse
+        Test
+
+        Instead:
+
+        App
+        │
+        ├── Navbar
+        ├── Sidebar
+        ├── ProductList
+        ├── ProductCard
+        ├── Cart
+        └── Footer
+
+        Each component has its own responsibility.
+
+        This is called component-based architecture
+
+Main characteristics of a Component :
+
+        A good React component is generally:
+
+        Independent
+
+        It represents a specific part of the UI.
+
+        Reusable
+
+        The same component can be used multiple times.
+
+        Composable
+
+        Small components can be combined to create larger components.
+
+        For example:
+
+        ProductCard
+        ↓
+        ProductList
+        ↓
+        ProductsPage
+        ↓
+        App
+        Can receive data
+
+        A component can receive data through props.
+
+        Can manage changing data
+
+        A component can have state.
+
+Types of React Components :
+
+Functional Component :
+
+        A functional component is simply a JavaScript function that returns React UI.
+        Example:
+        function Welcome() {
+        return <h1>Hello</h1>;
+        }
+
+        Modern React uses functional components because they work naturally with Hooks.
+
+Class Component : 
+        Before Hooks were introduced, class components were commonly used for state and lifecycle behavior.
+
+        Example:
+
+        class Welcome extends React.Component {
+        render() {
+                return <h1>Hello</h1>;
+        }
+        }
+
+Component Naming : React component names should normally start with a capital letter.
+        Why?
+        Because React uses capitalization to distinguish a user-defined component from built-in HTML elements.
+
+How do we use a Component? :
+        Suppose we create:
+
+        function Header() {
+        return <h1>My Website</h1>;
+        }
+
+        We can use it inside another component:
+
+        function App() {
+        return (
+                <div>
+                <Header />
+                </div>
+        );
+        }
+
+        So:
+
+        App
+        ↓
+        Header
+
+        App is the parent.
+
+        Header is the child.
+
+Components can contain other Components :   This is called composition.
+        Example:
+
+        function ProductCard() {
+        return <div>Product</div>;
+        }
+
+        function ProductList() {
+        return (
+                <div>
+                <ProductCard />
+                <ProductCard />
+                <ProductCard />
+                </div>
+        );
+        }
+
+        Here:
+
+        ProductList
+        │
+        ├── ProductCard
+        ├── ProductCard
+        └── ProductCard
+
+        We build a larger component by combining smaller components.
+
+        This is component composition
+
+Component Lifecycle :
+        A component goes through different stages during its existence.
+
+        Conceptually:
+        Mount
+        ↓
+        Update
+        ↓
+        Unmount
+Mounting : Component is created and added to the UI
+
+Updating : Something changes, such as props or state.
+
+Unmounting : Component is removed from the UI.
+
+Can a component return multiple elements? :
+        Yes.
+
+        A component must return a valid React element structure.
+
+        You can use a wrapper:
+
+        function App() {
+        return (
+                <div>
+                <h1>Hello</h1>
+                <p>Welcome</p>
+                </div>
+        );
+        }
+
+        Or a Fragment:
+
+        function App() {
+        return (
+                <>
+                <h1>Hello</h1>
+                <p>Welcome</p>
+                </>
+        );
+        }
+
+        The Fragment avoids adding an unnecessary DOM element
+
+Element : 
+        An element is a description of what should be rendered.
+
+        <Welcome />
+
+        or:
+
+        <h1>Hello</h1>
+
+The complete model :    
+                    React Application
+                           ↓
+                    Component Tree
+                           ↓
+                ┌──────────┴──────────┐
+                ↓                     ↓
+             Parent                 Child
+                │                     │
+                │ props               │
+                └────────────────────→│
+                                      │
+                                   State
+                                      │
+                              State changes
+                                      ↓
+                                  Re-render
+                                      ↓
+                               Reconciliation
+                                      ↓
+                                Updated UI
