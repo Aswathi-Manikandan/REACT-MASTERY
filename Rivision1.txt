@@ -542,3 +542,73 @@ Props can pass functions too :
         Parent → Child
 
         the child can call a function provided by the parent to notify the parent about an event.
+
+Reconciliation :
+        Reconciliation is the process React uses to figure out what changed in the UI and what needs 
+        to be updated in the actual DOM.
+
+        Suppose your UI initially shows:
+        Count: 0
+
+        You click a button:
+        Count: 1
+
+        React doesn't blindly recreate the entire webpage.
+
+        Instead, React compares the previous UI representation with the new UI representation, identifies what changed, 
+        and updates the necessary part of the DOM.
+
+Is reconciliation the same as Virtual DOM?
+
+        No. They are related, but not the same.
+
+        Virtual DOM → React's in-memory representation of the UI.
+        Reconciliation → the process of comparing the previous and new UI representations to determine what changed.
+        DOM update → React applies the necessary changes to the actual browser DOM.
+
+        Think:
+
+        Virtual DOM = representation
+        Reconciliation = comparison/diffing process
+        Real DOM = actual browser UI
+
+Virtual DOM :
+        The Virtual DOM is a lightweight, in-memory representation of the actual DOM.
+
+        React uses it to keep track of what the UI should look like.
+
+        Think of it like a copy/representation of the browser DOM kept in memory.
+
+        Virtual DOM
+        ↓
+        Represents
+        ↓
+        Actual DOM in browser
+
+
+Virtual DOM + Reconciliation :
+
+        These two concepts are closely connected:
+
+        State/Props change
+        ↓
+        Component renders
+        ↓
+        New Virtual DOM representation
+        ↓
+        Reconciliation
+        ↓
+        Compare old vs new
+        ↓
+        Determine required changes
+        ↓
+        Update actual DOM
+
+        So:
+
+        Virtual DOM → representation of the UI in memory.
+
+        Reconciliation → process of determining what changed between renders
+
+=>Virtual DOM = an in-memory representation of the UI that React uses 
+during rendering and reconciliation to determine necessary DOM updates.
