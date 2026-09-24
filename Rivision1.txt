@@ -611,4 +611,55 @@ Virtual DOM + Reconciliation :
         Reconciliation → process of determining what changed between renders
 
 =>Virtual DOM = an in-memory representation of the UI that React uses 
-during rendering and reconciliation to determine necessary DOM updates.
+  during rendering and reconciliation to determine necessary DOM updates.
+
+Diffing :
+        Diffing is the process of comparing the previous Virtual DOM representation with the new
+        Virtual DOM representation to find what has changed.
+
+        The word diff simply means difference.
+
+        Example:
+
+        Before:
+
+        Name: Aswathi
+        Age: 22
+        City: Kochi
+
+        After:
+
+        Name: Aswathi
+        Age: 23
+        City: Kochi
+
+        React compares them and identifies:
+
+        Age: 22 → 23
+
+        Only the changed part needs to be reflected in the actual DOM.
+
+Where does Diffing happen?
+
+        The flow is:
+
+        State / Props change
+                ↓
+        Component re-renders
+                ↓
+        New Virtual DOM representation
+                ↓
+        Diffing
+                ↓
+        Find differences
+                ↓
+        Reconciliation
+                ↓
+        Update actual DOM
+
+        More accurately, diffing is part of the reconciliation process.
+
+        So you can remember:
+
+        Reconciliation = overall process
+        Diffing = comparing old and new UI representations to find differences

@@ -1,0 +1,101 @@
+List in React:
+
+    In React, a list means displaying multiple similar items from an array.
+
+    For example, if we have:
+
+    const users = ["Aswathi", "Anu", "Rahul"];
+
+    We may want to display:
+
+    Aswathi
+    Anu
+    Rahul
+
+    Instead of writing each <li> manually, React commonly uses map()
+
+creating a list : 
+    function App() {
+    const users = ["Aswathi", "Anu", "Rahul"];
+
+    return (
+        <ul>
+        {users.map((user) => (
+            <li>{user}</li>
+        ))}
+        </ul>
+    );
+    }
+
+    Here:
+
+    users → array
+    map() → goes through each item
+    <li>  → creates UI for each item
+
+2. Why do we need key?
+
+    When rendering lists, React expects each item to have a unique key.
+
+    function App() {
+    const users = [
+        { id: 1, name: "Aswathi" },
+        { id: 2, name: "Anu" },
+        { id: 3, name: "Rahul" }
+    ];
+
+    return (
+        <ul>
+        {users.map((user) => (
+            <li key={user.id}>{user.name}</li>
+        ))}
+        </ul>
+    );
+    }
+
+    Here:
+
+    key={user.id}
+
+    helps React identify each list item between renders.
+
+    This is especially useful when items are added, removed, or reordered.
+
+3. Why not use index as key?
+
+    You can technically do:
+
+    users.map((user, index) => (
+    <li key={index}>{user}</li>
+    ))
+
+    But using a stable unique ID is generally better when available.
+
+    Why?
+
+    Suppose:
+
+    Before:
+    A
+    B
+    C
+
+    Then A is removed:
+
+    B
+    C
+
+    The indexes change:
+
+    B → 0
+    C → 1
+
+    With stable IDs, React can correctly understand which items are actually the same.
+
+CSR vs SSR in React : 
+                            CSR	                                        SSR
+        Rendering happens mainly in browser	                    HTML is generated on server
+        Initial page may require JS before content appears	    Server can send rendered HTML
+        Common for SPAs	                                        Common for SEO/content-heavy applications
+        Server sends application resources	                    Server generates HTML for the request
+        Browser does more rendering work	                    Server does more rendering work
