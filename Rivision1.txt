@@ -494,3 +494,51 @@ Props can contain different types of data
         skills={["JS", "React"]}
         user={{ city: "Kochi" }}
         />
+
+Props are read-only :
+        A child component should not modify the props directly.
+        A child component should not modify the props directly.
+
+        For example:
+
+        function User(props) {
+        props.name = "Akshay"; // ❌
+        }
+
+        Props are treated as read-only inputs.
+
+        If the value needs to change, normally the parent changes its state and passes the updated value 
+        again through props.
+
+Props vs State :
+
+                   Props	                                   State
+        Data received by a component	                Data managed by a component
+        Usually passed from parent	                Managed inside component
+        Read-only	                                Can be updated
+        Used to communicate between components	        Used for changing data/UI
+        Parent controls the value	                Component manages the value
+
+Props can pass functions too :
+
+        This is important because it allows a child to communicate an action back to the parent.
+
+        function App() {
+        function sayHello() {
+        console.log("Hello");
+        }
+
+        return <Child onClick={sayHello} />;
+        }
+
+        function Child(props) {
+        return <button onClick={props.onClick}>Click</button>;
+        }
+
+        Here the parent passes a function as a prop.
+
+        So although data normally flows:
+
+        Parent → Child
+
+        the child can call a function provided by the parent to notify the parent about an event.
