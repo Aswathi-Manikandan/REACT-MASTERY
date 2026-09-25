@@ -1,0 +1,126 @@
+JSX in React :
+    JSX = JavaScript XML.
+
+    JSX allows us to write HTML-like syntax inside JavaScript.
+
+    For example:
+
+    function App() {
+    return <h1>Hello Aswathi</h1>;
+    }
+
+    Here:
+
+    <h1>Hello Aswathi</h1>
+
+    looks like HTML, but inside a React component it is JSX.
+
+    The main benefit is that we can write UI structure and JavaScript logic together.
+
+    2. Why do we use JSX?
+
+    Without JSX:
+
+    const element = React.createElement(
+    "h1",
+    null,
+    "Hello Aswathi"
+    );
+
+    With JSX:
+
+    const element = <h1>Hello Aswathi</h1>;
+
+    JSX makes React code easier to read and write.
+
+3. JavaScript inside JSX
+
+    We can put JavaScript expressions inside {}.
+
+    function App() {
+    const name = "Aswathi";
+
+    return <h1>Hello {name}</h1>;
+    }
+
+    Output:
+
+    Hello Aswathi
+
+    You can use expressions:
+
+    <h1>{10 + 20}</h1>
+
+    Output:
+
+    30
+
+    But statements such as if cannot directly be written inside {}:
+
+    // ❌
+    <h1>{if (age > 18)}</h1>
+
+    Instead, use conditional rendering techniques such as ternary:
+
+    <h1>{age >= 18 ? "Adult" : "Minor"}</h1>
+4. JSX attributes
+
+    JSX uses attributes similar to HTML, but some names are different because JSX 
+    follows JavaScript naming conventions.
+
+    <button className="btn">Click</button>
+
+    HTML:
+
+    <button class="btn">Click</button>
+
+    Common examples:
+
+    class      → className
+    for        → htmlFor
+    onclick    → onClick
+    tabindex   → tabIndex
+5. JSX must return one parent
+
+    This:
+
+    return (
+    <h1>Hello</h1>
+    <p>Welcome</p>
+    );
+
+    ❌ is not valid because there are two adjacent elements.
+
+    Use a parent:
+
+    return (
+    <div>
+        <h1>Hello</h1>
+        <p>Welcome</p>
+    </div>
+    );
+
+    Or use a Fragment:
+
+    return (
+    <>
+        <h1>Hello</h1>
+        <p>Welcome</p>
+    </>
+    );
+6. JSX is not HTML
+
+    This is an important interview point.
+
+    JSX looks like HTML, but it is actually syntax used to describe React elements.
+
+    Conceptually:
+
+    <h1>Hello</h1>
+
+    is transformed into something like:
+
+    React.createElement("h1", null, "Hello");
+
+    Modern React projects usually use the automatic JSX transform, so you normally don't 
+    write React.createElement() yourself.
