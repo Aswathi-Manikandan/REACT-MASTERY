@@ -1,0 +1,118 @@
+What is Profiler?
+
+    Profiler is a tool/API in React used to measure the rendering performance of components.
+
+    It helps us understand:
+
+    Which component rendered
+    How long it took to render
+    How often it rendered
+    Which updates are causing rendering
+
+Why do we use Profiler?
+
+    Suppose your application becomes slow.
+
+    You have:
+
+    App
+    ├── Navbar
+    ├── ProductList
+    ├── ProductCard
+    └── Cart
+
+    You want to know:
+
+    "Which component is taking too much time to render?"
+
+    Profiler can help you measure the rendering of these components.
+
+StrictMode in React :
+    StrictMode is a development-only feature in React that helps you find potential problems in your 
+    application.
+
+    You can wrap your application with:
+
+    import { StrictMode } from "react";
+
+    <StrictMode>
+    <App />
+    </StrictMode>
+
+    It does not add visible UI to your application.
+
+    2. Why do we use StrictMode?
+
+    StrictMode helps developers detect things like:
+
+    Unsafe or outdated React patterns
+    Unexpected side effects
+    Components that aren't behaving correctly
+    Deprecated APIs
+    Code that may cause problems with React's current/future rendering behavior
+
+    Think of it as:
+
+    StrictMode = React's development-time checker
+
+Controlled Component :
+    In a controlled component, the input's value is stored in React state.
+
+    Example:
+
+    import { useState } from "react";
+
+    function App() {
+    const [name, setName] = useState("");
+
+    return (
+        <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        />
+    );
+    }
+
+Uncontrolled Component
+
+    In an uncontrolled component, the DOM itself maintains the input value.
+
+    Instead of storing every change in React state, we can use a ref to access the value when needed.
+
+    import { useRef } from "react";
+
+    function App() {
+    const inputRef = useRef();
+
+    function handleSubmit() {
+        console.log(inputRef.current.value);
+    }
+
+    return (
+        <>
+        <input ref={inputRef} />
+        <button onClick={handleSubmit}>Submit</button>
+        </>
+    );
+    }
+
+    Here React is not controlling the input's value.
+
+    The browser/DOM maintains it.
+
+    When we click Submit:
+
+    DOM input
+        ↓
+    ref
+        ↓
+    inputRef.current.value
+
+Main difference :
+                            Controlled	                        Uncontrolled
+                React state controls value	                DOM controls value
+                Uses value	                                Usually uses defaultValue
+                Uses onChange to update state	            Doesn't need state for every change
+                Uses useState                               commonly	Uses useRef commonly
+                React always knows current value	        React reads value when needed
+                More control over input	                    Simpler for some basic forms
