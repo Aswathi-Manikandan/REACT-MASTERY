@@ -1,0 +1,280 @@
+React Element :
+    A React element is a plain JavaScript object that describes what you want React to display in the UI.
+
+    For example:
+
+    const element = <h1>Hello Aswathi</h1>;
+
+    Here:
+
+    <h1>Hello Aswathi</h1>
+
+    is a React element.
+
+    It describes:
+
+    "I want an h1 containing Hello Aswathi."
+
+    It is not the actual DOM element created by the Browser
+
+
+React Element vs DOM Element :
+
+    This is important.
+
+    React Element
+        ↓
+    description of UI
+        ↓
+    React
+        ↓
+    Actual DOM Element
+        ↓
+    Browser
+
+    For example:
+
+    const element = <h1>Hello</h1>;
+
+    React uses this description to create/update the actual:
+
+    <h1>Hello</h1>
+
+    in the browser DOM.
+
+
+React Element vs Component :
+
+    These are often confused.
+
+    Component
+
+    A component is a reusable function/class that describes UI.
+
+    function Welcome() {
+    return <h1>Hello</h1>;
+    }
+
+    Welcome is a component.
+
+    Element
+
+    When we use the component:
+
+    <Welcome />
+
+    that is a React element describing the component to render.
+
+    So:
+
+    Component → reusable UI definition
+    Element   → description of what React should render
+
+Elements are immutable :
+
+    Once created, a React element should be treated as immutable.
+
+    If you want the UI to change, React creates a new element representation during the next render.
+
+    Example:
+
+    const element = <h1>Count: 0</h1>;
+
+    Later:
+
+    const newElement = <h1>Count: 1</h1>;
+
+    React can compare the old and new representations during reconciliation
+
+React Element vs React Component :
+
+                        Component	                                   React Element
+                    Reusable piece of UI	                    Description of UI
+                    Usually a function or class	                JavaScript object
+                    Can contain logic, state, props, hooks	    Describes what should be rendered
+                    Can return elements	                        Created using JSX / React APIs
+                    Can be reused multiple times	            Represents one UI description
+                    Example: Welcome	                        Example: <Welcome />
+
+Synthetic Events in React :
+    A Synthetic Event is React's wrapper around the browser's native event.
+
+    For example, when you click a button, the browser generates a native click event.
+
+    React provides that event to your event handler as a SyntheticEvent.
+
+    function App() {
+    function handleClick(event) {
+        console.log(event);
+    }
+
+    return <button onClick={handleClick}>Click</button>;
+    }
+
+    Here:
+
+    User clicks button
+        ↓
+    Browser creates native event
+        ↓
+    React wraps/normalizes it
+        ↓
+    Your handler receives the event
+
+
+Why does React use Synthetic Events?:
+
+    Different browsers can have differences in how events behave.
+
+    React provides a consistent event interface so you can handle events in a predictable way.
+
+    For example:
+
+    <button onClick={handleClick}>
+    Click
+    </button>
+
+    React's event system gives your handler an event object with familiar properties and methods.
+
+
+Common Synthetic Events :
+
+    React provides handlers for many common events:
+
+    onClick
+    onChange
+    onSubmit
+    onMouseEnter
+    onMouseLeave
+    onKeyDown
+    onKeyUp
+    onFocus
+    onBlur
+
+    Example:
+
+    <button onClick={handleClick}>
+    Click
+    </button>
+    <input onChange={handleChange} />
+
+
+preventDefault() :
+
+    Synthetic events also provide familiar event methods.
+
+    For example:
+
+    function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log("Form submitted");
+    }
+
+    preventDefault() prevents the browser's default action.
+
+    For a form, this can prevent the browser from performing its normal page navigation/submission behavior.
+
+Synthetic Event vs Native Event :
+
+                    Synthetic Event	                                   Native Event
+            Provided through React's event system	        Provided directly by the browser
+            Consistent React interface	                    Browser's native event object
+            Used with React event handlers	                Used with DOM APIs like addEventListener()
+            Example: onClick	                            Example: element.addEventListener("click", ...)
+
+React.createElement() :
+    React.createElement() is used to create a new React element.
+
+    Example:
+
+    const element = React.createElement(
+    "h1",
+    null,
+    "Hello Aswathi"
+    );
+
+    This represents:
+
+    <h1>Hello Aswathi</h1>
+
+    So:
+
+    React.createElement()
+            ↓
+    Creates a NEW React element
+    With props
+    const element = React.createElement(
+    "h1",
+    { className: "title" },
+    "Hello"
+    );
+
+    Equivalent JSX:
+
+    <h1 className="title">Hello</h1>
+    Connection with JSX
+
+    When JSX is transformed, it is conceptually converted into React element creation.
+
+    <h1>Hello</h1>
+
+    is conceptually equivalent to:
+
+    React.createElement("h1", null, "Hello");
+
+    Modern React uses the automatic JSX transform in many setups, so you don't normally 
+    write React.createElement() yourself
+
+React.cloneElement() :
+
+    React.cloneElement() is used to create a new element based on an existing React element, optionally 
+    changing or adding its props and children.
+
+    Example:
+
+    const element = <Button color="blue" />;
+
+    Now:
+
+    const newElement = React.cloneElement(
+    element,
+    { color: "red" }
+    );
+
+    The new element has:
+
+    color = "red"
+
+    So:
+
+    Existing element
+        ↓
+    cloneElement()
+        ↓
+    New element with modified/added props
+    3. Simple example
+    function Button(props) {
+    return <button style={{ color: props.color }}>Click</button>;
+    }
+
+    const button = <Button color="blue" />;
+
+    const newButton = React.cloneElement(
+    button,
+    { color: "red" }
+    );
+
+    The original:
+
+    color = blue
+
+    The cloned element:
+
+    color = red
+
+                createElement()	                                cloneElement()
+        Creates a new element from a type	            Creates a new element from an existing element
+        You provide the type, props, children	        You provide the existing element and new props/children
+        Example: "div", Button	                        Example: <Button />
+        Creates from scratch	                        Copies/modifies an existing element
