@@ -1,0 +1,138 @@
+Event Handling :
+    Event handling in React is the process of responding to user interactions such as clicks,
+    typing, submitting forms, and mouse or keyboard actions. React uses event handlers such 
+    as onClick, onChange, and onSubmit, where we pass a function that executes when 
+    the event occurs. React provides a SyntheticEvent object to the event handler.
+
+When a user interacts with a webpage, an event happens.
+
+    Examples:
+
+    Click a button       → click event
+    Type in an input     → change/input event
+    Submit a form        → submit event
+    Press a keyboard key → keyboard event
+    Move the mouse       → mouse event
+
+    In React, we tell the element which function should run when that event happens.
+
+    Example
+    function App() {
+    function handleClick() {
+        console.log("Button clicked");
+    }
+
+    return (
+        <button onClick={handleClick}>
+        Click Me
+        </button>
+    );
+    }
+
+    Flow:
+
+    User clicks button
+        ↓
+    onClick event occurs
+        ↓
+    handleClick() runs
+        ↓
+    "Button clicked"
+
+Common React events :
+                     Event	                           Used for
+                    onClick	                        Clicking
+                    onChange	                    Input value changes
+                    onSubmit	                    Form submission
+                    onFocus	                        Input gets focus
+                    onBlur	                        Input loses focus
+                    onMouseEnter	                Mouse enters element
+                    onMouseLeave	                Mouse leaves element
+                    onKeyDown	                    Key is pressed
+                    onKeyUp	                        Key is released
+
+Passing a function :
+    <button onClick={handleClick}>
+    Click
+    </button>
+
+Passing arguments :
+
+    If you need to pass an argument, use an arrow function:
+
+    function App() {
+    function greet(name) {
+        console.log("Hello " + name);
+    }
+
+    return (
+        <button onClick={() => greet("Aswathi")}>
+        Click
+        </button>
+    );
+    }
+
+    Here:
+
+    Click
+    ↓
+    Arrow function
+    ↓
+    greet("Aswathi")
+
+Event object :
+
+    React passes an event object to the handler.
+
+    function App() {
+    function handleClick(event) {
+        console.log(event);
+    }
+
+    return <button onClick={handleClick}>Click</button>;
+    }
+
+    You can use it to get information about the event.
+
+    For an input:
+
+    function App() {
+    function handleChange(event) {
+        console.log(event.target.value);
+    }
+
+    return <input onChange={handleChange} />;
+    }
+
+    If you type:
+
+    Hello
+
+    the value can be accessed through:
+
+    event.target.value
+
+preventDefault() :
+
+    Some browser actions have a default behavior.
+
+    For example, submitting a form normally reloads/navigates the page.
+
+    React can prevent that:
+
+    function App() {
+    function handleSubmit(event) {
+        event.preventDefault();
+        console.log("Form submitted");
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+        <button type="submit">Submit</button>
+        </form>
+    );
+    }
+
+    preventDefault() means:
+
+    Stop the browser's default action.
