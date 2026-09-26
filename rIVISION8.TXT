@@ -1,0 +1,183 @@
+Routing in React :
+    Routing in React is the process of displaying different components or views based 
+    on the URL path. React applications commonly use React Router for client-side routing, 
+    which allows users to navigate between different routes without performing a full page reload.
+
+Imagine an e-commerce application:
+
+    /              → Home
+    /products      → Products
+    /cart          → Cart
+    /login         → Login
+    /profile       → Profile
+
+    Routing connects these URLs to the corresponding React components.
+
+    For example:
+
+    URL
+    ↓
+    /products
+    ↓
+    React Router
+    ↓
+    Products component
+    ↓
+    Products page displayed
+3. Why do we need routing? :
+
+    Without routing, a React application would have difficulty handling different URLs/views.
+
+    For example:
+
+    myapp.com/
+    myapp.com/products
+    myapp.com/cart
+    myapp.com/profile
+
+    Routing allows each path to display the appropriate UI
+
+React Router example
+
+    First install React Router:
+
+    npm install react-router-dom
+
+    Then:
+
+    import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+    function App() {
+    return (
+        <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
+        </Routes>
+        </BrowserRouter>
+    );
+    }
+
+    Now:
+
+    /          → Home
+    /products  → Products
+    /cart      → Cart
+
+Important routing components
+    BrowserRouter
+
+    Provides the routing context and integrates routing with the browser's URL/history.
+
+    <BrowserRouter>
+    ...
+    </BrowserRouter>
+
+    Think:
+
+    BrowserRouter = enables routing for the application.
+
+    Routes
+
+    Contains the route definitions.
+
+    <Routes>
+    ...
+    </Routes>
+
+    Think:
+
+    Routes = collection of routes.
+
+    Route
+
+    Connects a URL path to a React element.
+
+    <Route path="/products" element={<Products />} />
+
+    Think:
+
+    Route = which component should appear for this path?
+
+Navigation
+
+    For navigation inside a React application, we commonly use Link.
+
+    import { Link } from "react-router-dom";
+
+    <Link to="/products">Products</Link>
+
+    Clicking it navigates to:
+
+    /products
+
+    without the normal full-page reload associated with a traditional <a href> navigation.
+
+Dynamic Routing :
+
+    Sometimes the URL contains a value.
+
+    For example:
+
+    /products/101
+    /products/102
+    /products/103
+
+    We can define:
+
+    <Route path="/products/:id" element={<Product />} />
+
+    Then /products/101 matches the route with:
+
+    id = 101
+
+    Inside the component:
+
+    import { useParams } from "react-router-dom";
+
+    function Product() {
+    const { id } = useParams();
+
+    return <h1>Product ID: {id}</h1>;
+    }
+
+
+Routing vs React Router :
+
+    These are not exactly the same thing.
+
+Routing:
+
+    The concept/process of mapping URLs to views.
+
+React Router:
+
+    A library used to implement routing in React applications.
+
+    So:
+
+    Routing = concept
+    React Router = tool/library used to implement it
+
+Routing and SPA :
+    For example:
+
+    Home
+    ↓
+    Products
+    ↓
+    Product Details
+    ↓
+    Cart
+
+    The UI can change as the URL changes without requiring a full page reload for every navigation.
+
+Important terms :
+    BrowserRouter →     provides routing context
+    Routes →            contains routes
+    Route →             maps path to component/element
+    Link →              navigation
+    useNavigate →       programmatic navigation
+    useParams →         access dynamic route parameters
+    Outlet →            renders nested child routes
