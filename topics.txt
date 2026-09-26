@@ -1,0 +1,72 @@
+Event Handling
+Forms =========>
+Fragments
+Component Composition======>
+Children Prop
+Default Props
+Prop Drilling
+Context API
+Refs
+Hooks — very important
+Hooks
+useState
+useEffect
+Dependency Array
+Cleanup Function
+useRef
+useContext
+useReducer
+useMemo
+useCallback
+useLayoutEffect
+Custom Hooks
+Rules of Hooks
+Routing
+Nested Routing
+Dynamic Routing
+Route Parameters
+Query Parameters
+Protected Routes
+404 / Not Found Routes
+Navigation using useNavigate
+useParams
+useLocation
+API & Data Handling
+API Calls
+Fetch API
+Axios
+Loading State
+Error Handling
+Async/Await in React
+CRUD with API
+Authentication
+JWT
+Token Storage
+Protected API Requests
+Performance
+Re-rendering
+Memoization
+React.memo
+useMemo
+useCallback
+Lazy Loading
+Code Splitting
+React.lazy
+Suspense
+Debouncing
+Throttling
+Advanced React
+Error Boundaries
+Portals
+Higher-Order Components
+Render Props
+Compound Components
+Reconciliation in depth
+Concurrent Rendering
+Suspense
+Server Components
+Hydration
+State Management
+Redux
+Redux Toolkit
+Zustand

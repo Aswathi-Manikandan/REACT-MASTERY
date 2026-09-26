@@ -116,3 +116,152 @@ Main difference :
                 Uses useState                               commonly	Uses useRef commonly
                 React always knows current value	        React reads value when needed
                 More control over input	                    Simpler for some basic forms
+
+
+value vs defaultValue :
+
+    Controlled:
+    <input value={name} onChange={...} />
+
+    React controls the current value.
+
+    Uncontrolled:
+    <input defaultValue="Aswathi" ref={inputRef} />
+
+    defaultValue provides the initial value, while the DOM manages subsequent changes.
+
+
+Real-life analogy
+    Controlled
+
+    Think of a teacher recording every answer a student gives.
+
+    Student types
+        ↓
+    Teacher/React records it
+        ↓
+    State
+
+    React always knows the current value.
+
+Uncontrolled
+
+    The student writes directly on their paper.
+
+    Student types
+        ↓
+    Paper/DOM stores it
+        ↓
+    Teacher/React checks it when needed
+
+When to use them?
+Controlled components
+    Useful when you need to:
+
+    Validate while typing
+    Enable/disable buttons based on input
+    Dynamically change other UI
+    Control form values
+    Handle complex forms
+
+Uncontrolled components
+
+    Useful when:
+
+    You have simple forms
+    You don't need to track every keystroke
+    You mainly need the value on submission
+    You want less state management
+
+Lifting State Up in React :
+    Lifting state up means moving state from a child component to their closest common parent component
+    so that multiple child components can share and use the same data.
+
+Why do we need it?
+
+    Imagine we have:
+
+            App
+        /   \
+    Child A  Child B
+
+    Suppose Child A changes some data, and Child B also needs that data.
+
+    If the state is inside Child A:
+
+    App
+    |
+    Child A → state
+    |
+    Child B → cannot directly access Child A's state
+
+    Instead, move the state to App:
+
+            App
+        state here
+        /   \
+        ↓     ↓
+    Child A  Child B
+
+    Now both children can receive the required data through props
+
+Example
+
+    Suppose we have two components:
+
+    function App() {
+    const [name, setName] = useState("");
+
+    return (
+        <>
+        <Input name={name} setName={setName} />
+        <Display name={name} />
+        </>
+    );
+    }
+
+    Child 1:
+
+    function Input({ name, setName }) {
+    return (
+        <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        />
+    );
+    }
+
+    Child 2:
+
+    function Display({ name }) {
+    return <h2>Hello {name}</h2>;
+    }
+
+    Here:
+
+                App
+            state: name
+            /       \
+            ↓         ↓
+        Input      Display
+            ↓           ↓
+    setName()     name
+
+    When the user types:
+
+    Aswathi
+
+    the flow is:
+
+    Input
+    ↓
+    setName("Aswathi")
+    ↓
+    App state changes
+    ↓
+    App re-renders
+    ↓
+    new name passed to Display
+    ↓
+    Display shows "Hello Aswathi"
+

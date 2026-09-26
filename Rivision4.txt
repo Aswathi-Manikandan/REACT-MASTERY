@@ -278,3 +278,24 @@ React.cloneElement() :
         You provide the type, props, children	        You provide the existing element and new props/children
         Example: "div", Button	                        Example: <Button />
         Creates from scratch	                        Copies/modifies an existing element
+
+Important: cloneElement does NOT modify the original :
+
+    For example:
+
+    const element = <Button color="blue" />;
+
+    const cloned = React.cloneElement(
+    element,
+    { color: "red" }
+    );
+
+    The original element is still:
+
+    color = blue
+
+    The cloned element is:
+
+    color = red
+
+    It creates a new React element.

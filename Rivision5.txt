@@ -1,0 +1,204 @@
+Stateful Component :
+
+    A stateful component is a component that manages its own state.
+
+    Example:
+
+    import { useState } from "react";
+
+    function Counter() {
+    const [count, setCount] = useState(0);
+
+    return (
+        <button onClick={() => setCount(count + 1)}>
+        {count}
+        </button>
+    );
+    }
+
+    Here Counter has:
+
+    state → count
+
+    and it can update that state using:
+
+    setCount()
+
+    So we call it stateful.
+
+    Simple meaning
+
+    Stateful = component has/manages changing state.
+
+Stateless Component :
+
+    A stateless component doesn't manage its own state.
+
+    It usually receives data through props and displays it.
+
+    function User({ name }) {
+    return <h1>Hello {name}</h1>;
+    }
+
+    Here User doesn't have its own state.
+
+    The parent provides:
+
+    <User name="Aswathi" />
+
+    So it is stateless.
+
+    Simple meaning
+
+    Stateless = component doesn't manage its own state.
+
+Stateful vs Stateless :
+
+            Stateful	                                                        Stateless
+        Manages state	                                                Doesn't manage its own state
+        Can update state	                                            Usually receives data through props
+        Used when UI/data needs to change based on internal state	    Often used for displaying UI
+        Can use useState or other state mechanisms	                    May only receive props and render UI
+
+=>"Class components are stateful and functional components are stateless."
+
+Event Pooling in React :
+
+    Event pooling was a technique used by older versions of React to reuse SyntheticEvent objects 
+    instead of creating a new event object for every event.
+
+    Simple understanding
+
+    Suppose you click a button:
+
+    function App() {
+    function handleClick(event) {
+        console.log(event.type);
+        console.log(event.target);
+    }
+
+    return <button onClick={handleClick}>Click</button>;
+    }
+
+    React gives the handler a SyntheticEvent object.
+
+    In older React versions, after the event handler finished, React would reuse that event object 
+    for another event. Its properties could be cleared.
+
+    So code like this could cause problems:
+
+    function handleClick(event) {
+    setTimeout(() => {
+        console.log(event.target);
+    }, 1000);
+    }
+
+    In older React, event.target could become null because the event object had been returned to the pool.
+
+    Why was event pooling used?
+
+    Mainly to reduce the number of event objects created and potentially reduce memory usage.
+
+    Think of it like:
+
+    Event happens
+        ↓
+    Create event object
+        ↓
+    Use it
+        ↓
+    Return it to a pool
+        ↓
+    Reuse it for another event
+
+
+Conditional Rendering in React :
+    Conditional rendering means showing different UI based on a condition.
+
+    Just like JavaScript if/else, React can decide what should be displayed based on state, props, 
+    or any condition.
+
+    For example, if a user is logged in:
+
+    function App() {
+    const isLoggedIn = true;
+
+    if (isLoggedIn) {
+        return <h1>Welcome!</h1>;
+    } else {
+        return <h1>Please Login</h1>;
+    }
+    }
+
+    If isLoggedIn is true:
+
+    Welcome!
+
+    If false:
+
+    Please Login
+
+
+Common ways of conditional rendering :
+A. if / else
+
+    Best when the condition is more complex.
+
+    function App() {
+    const isLoggedIn = true;
+
+    if (isLoggedIn) {
+        return <h1>Welcome</h1>;
+    }
+
+    return <h1>Please Login</h1>;
+    }
+B. Ternary operator ? :
+
+    Useful for choosing between two UI options.
+
+    function App() {
+    const isLoggedIn = true;
+
+    return (
+        <div>
+        {isLoggedIn ? <h1>Welcome</h1> : <h1>Please Login</h1>}
+        </div>
+    );
+    }
+
+    Think:
+
+    condition ? true result : false result
+C. Logical AND &&
+
+    Used when you want to show something only if the condition is true.
+
+    function App() {
+    const isAdmin = true;
+
+    return (
+        <div>
+        {isAdmin && <button>Delete User</button>}
+        </div>
+    );
+    }
+
+    If isAdmin is true:
+
+    Delete User
+
+    If false, nothing is rendered.
+
+D. if with multiple conditions
+    function App() {
+    const role = "admin";
+
+    if (role === "admin") {
+        return <h1>Admin Dashboard</h1>;
+    } else if (role === "user") {
+        return <h1>User Dashboard</h1>;
+    } else {
+        return <h1>Guest</h1>;
+    }
+    }

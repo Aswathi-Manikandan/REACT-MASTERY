@@ -124,3 +124,99 @@ JSX in React :
 
     Modern React projects usually use the automatic JSX transform, so you normally don't 
     write React.createElement() yourself.
+
+
+React Fiber :
+    React Fiber is React's internal reconciliation architecture introduced to make rendering work more 
+    flexible and efficient. It represents units of work as Fiber nodes and allows React to prioritize, 
+    pause, resume, and process rendering work. Fiber is also the foundation that enables React's modern 
+    concurrent rendering capabilities.
+
+
+Babel :
+    babel is a JavaScript compiler/toolchain that transforms modern JavaScript and JSX code into JavaScript 
+    that can be understood and executed by the target environment. In React applications, Babel is 
+    commonly used to transform JSX into JavaScript and can also transform newer JavaScript syntax 
+    when configured with the appropriate presets or plugins.
+
+Simple understanding :
+
+    You write React code like:
+
+    function App() {
+    return <h1>Hello</h1>;
+    }
+
+    The browser doesn't directly understand JSX syntax.
+
+    Babel can transform the JSX into JavaScript, conceptually like:
+
+    React.createElement("h1", null, "Hello");
+
+    Then React can use that to create the UI.
+
+    So the basic flow is:
+
+    You write JSX
+        ↓
+    Babel
+        ↓
+    JavaScript
+        ↓
+    React
+        ↓
+    UI
+    Babel is not React
+
+    This is important:
+
+    React → library for building UI
+    Babel → tool that transforms code
+
+    Babel doesn't create your UI. It transforms your source code.
+
+3. What can Babel do? :
+
+    Babel can transform things such as:
+
+    JSX
+
+    <h1>Hello</h1>
+
+    into JavaScript.
+
+    It can also transform newer JavaScript syntax depending on the configured presets/plugins.
+
+    For example:
+
+    const add = (a, b) => a + b;
+
+    can be transformed for environments that don't support that syntax.
+
+4. Babel and JSX :
+
+    When learning React, remember:
+
+    JSX
+    ↓
+    Babel / JSX transform
+    ↓
+    JavaScript
+    ↓
+    React creates elements
+
+    One modern detail: React projects today often use the automatic JSX transform, 
+    so the generated code doesn't necessarily literally call React.createElement() in the 
+    source you see. The important idea is that JSX is transformed into JavaScript that React can process.
+
+
+Transpiler :
+    A transpiler is a tool that converts source code from one version or syntax of a programming 
+    language into another version or syntax of the same or closely related language. For example, 
+    Babel can transpile modern JavaScript and JSX into JavaScript syntax that is compatible 
+    with the target environment.
+
+Webpack :
+    Webpack is a module bundler that analyzes the dependencies of a web application and 
+    bundles JavaScript, CSS, images, and other assets into files that can be served to the 
+    browser. It can also use loaders and plugins to transform and process different types of files.

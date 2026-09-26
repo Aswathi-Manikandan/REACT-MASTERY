@@ -136,3 +136,202 @@ preventDefault() :
     preventDefault() means:
 
     Stop the browser's default action.
+
+
+React Fragments :
+    A React Fragment is used to group multiple elements without adding an extra DOM element 
+    to the actual HTML structure. Fragments are useful when a component needs to return Multiple
+    elements but we don't want an unnecessary wrapper such as a <div>. 
+    They can be written using <React.Fragment> or the shorthand <>...</>.
+
+Children Prop :
+    The children prop is a special prop in React that represents the content placed between
+    the opening and closing tags of a component. It allows a component to receive and render nested 
+    elements or components without explicitly defining them as a separate prop.
+
+    Suppose we create:
+
+    function Card({ children }) {
+    return (
+        <div>
+        {children}
+        </div>
+    );
+    }
+
+    Now we can use:
+
+    <Card>
+    <h1>Hello Aswathi</h1>
+    <p>Welcome</p>
+    </Card>
+
+    Everything between:
+
+    <Card>
+    ...
+    </Card>
+
+    becomes the children prop.
+
+    So:
+
+    <Card>
+    <h1>Hello</h1>
+    <p>Welcome</p>
+    </Card>
+
+            ↓
+
+    children
+    ↓
+    <h1>Hello</h1>
+    <p>Welcome</p>
+    children = content passed between a component's opening and closing tags.
+
+Default Props :
+    Default props are fallback values used when a component does not receive a 
+    particular prop from its parent. They allow a component to have a default 
+    value instead of receiving undefined. In modern functional components, 
+    default values are commonly provided through JavaScript parameter destructuring.
+
+Suppose:
+
+    function User({ name }) {
+    return <h1>Hello {name}</h1>;
+    }
+
+    If we use:
+
+    <User />
+
+    name is undefined.
+
+    We can provide a default:
+
+    function User({ name = "Guest" }) {
+    return <h1>Hello {name}</h1>;
+    }
+
+    Now:
+
+    <User />
+
+    gives:
+
+    Hello Guest
+
+    But:
+
+    <User name="Aswathi" />
+
+    gives:
+
+    Hello Aswathi
+
+    So:
+
+    Prop provided
+        ↓
+    Use provided value
+
+    Prop not provided
+        ↓
+    Use default value
+    Default Props = fallback values used when a prop isn't provided.
+
+Prop Drilling :
+    Prop drilling is the process of passing data through multiple intermediate 
+    components using props, even when those intermediate components do not need the 
+    data themselves, just so that a deeply nested component can receive it. It can make component 
+    communication harder to maintain, especially in large component trees. Context API or other state-management 
+    solutions can be used when appropriate to avoid unnecessary prop passing.
+
+    Imagine this component structure:
+
+    App
+    ↓
+    Dashboard
+    ↓
+    Profile
+    ↓
+    User
+
+    Suppose App has:
+
+    const username = "Aswathi";
+
+    But User needs the username.
+
+    You might do:
+
+    function App() {
+    const username = "Aswathi";
+
+    return <Dashboard username={username} />;
+    }
+
+    Then:
+
+    function Dashboard({ username }) {
+    return <Profile username={username} />;
+    }
+
+    Then:
+
+    function Profile({ username }) {
+    return <User username={username} />;
+    }
+
+    Finally:
+
+    function User({ username }) {
+    return <h1>{username}</h1>;
+    }
+
+    Notice:
+
+    App
+    ↓ username
+    Dashboard
+    ↓ username
+    Profile
+    ↓ username
+    User
+
+    Dashboard and Profile don't actually need the username. They are just passing it through.
+
+    That's prop drilling.
+
+
+Why can prop drilling be a problem?:
+
+    Imagine:
+
+    App
+    ↓
+    A
+    ↓
+    B
+    ↓
+    C
+    ↓
+    D
+    ↓
+    E
+
+    If E needs some data from App, you may have to pass that prop through:
+
+    App → A → B → C → D → E
+
+    As the application grows, this can become difficult to maintain.
+
+    Common solution
+
+    For shared data across many levels, React's Context API can sometimes avoid this:
+
+            Context
+        ↙      ↘
+    Component  Component
+
+    Instead of manually passing the prop through every intermediate component.
