@@ -181,3 +181,361 @@ Important terms :
     useNavigate →       programmatic navigation
     useParams →         access dynamic route parameters
     Outlet →            renders nested child routes
+
+
+Nested Routing :
+    Nested routing is a routing pattern where a route is defined inside another route. 
+    The parent route provides a common layout, while the child route renders its specific 
+    content inside the parent's <Outlet>. It is useful for applications with hierarchical 
+    pages such as dashboards, profiles, and settings.
+
+Simple understanding
+
+    Imagine this structure:
+
+    Dashboard
+    ├── Home
+    ├── Profile
+    └── Settings
+
+    You want the URL to be:
+
+    /dashboard/home
+    /dashboard/profile
+    /dashboard/settings
+
+    The Dashboard part is common, while the content changes.
+
+    We can create nested routes:
+
+    import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+    function App() {
+    return (
+        <BrowserRouter>
+        <Routes>
+            <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="home" element={<Home />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+            </Route>
+        </Routes>
+        </BrowserRouter>
+    );
+    }
+
+    Parent component:
+
+    import { Outlet } from "react-router-dom";
+
+    function Dashboard() {
+    return (
+        <div>
+        <h1>Dashboard</h1>
+
+        <Outlet />
+        </div>
+    );
+    }
+
+    Now:
+
+    /dashboard/home
+            ↓
+    Dashboard
+            +
+        Home
+
+    And:
+
+    /dashboard/profile
+            ↓
+    Dashboard
+            +
+        Profile
+    The important connection
+    Nested Route
+        ↓
+    Outlet
+        ↓
+    Child component appears here
+
+    So remember:
+
+    Nested Routing + Outlet = Parent layout + changing child content
+
+Simple understanding
+
+Imagine this structure:
+
+Dashboard
+ ├── Home
+ ├── Profile
+ └── Settings
+
+You want the URL to be:
+
+/dashboard/home
+/dashboard/profile
+/dashboard/settings
+
+The Dashboard part is common, while the content changes.
+
+We can create nested routes:
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="home" element={<Home />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+Parent component:
+
+import { Outlet } from "react-router-dom";
+
+function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+
+      <Outlet />
+    </div>
+  );
+}
+
+Now:
+
+/dashboard/home
+        ↓
+Dashboard
+        +
+      Home
+
+And:
+
+/dashboard/profile
+        ↓
+Dashboard
+        +
+      Profile
+The important connection
+Nested Route
+     ↓
+   Outlet
+     ↓
+Child component appears here
+
+So remember:
+
+Nested Routing + Outlet = Parent layout + changing child content 
+
+
+
+Dynamic Routing :
+    Dynamic routing is a routing pattern where part of the URL is treated as a dynamic parameter 
+    rather than being fixed. React Router allows this using route parameters such as :id. 
+    The parameter can then be accessed using useParams().
+
+    Suppose you have 1,000 products.
+
+    You don't want to create:
+
+    /products/1
+    /products/2
+    /products/3
+    ...
+    /products/1000
+
+    Instead, create one dynamic route:
+
+    <Route path="/products/:id" element={<Product />} />
+
+    Here:
+
+    :id
+
+    is the dynamic parameter.
+
+    Now all of these can match:
+
+    /products/101
+    /products/205
+    /products/999
+    Getting the dynamic value
+    import { useParams } from "react-router-dom";
+
+    function Product() {
+    const { id } = useParams();
+
+    return <h1>Product ID: {id}</h1>;
+    }
+
+    If the URL is:
+
+    /products/101
+
+    then:
+
+    id = "101"
+
+    If the URL is:
+
+    /products/500
+
+    then:
+
+    id = "500"
+
+    The same component handles all product IDs.
+
+
+Route Parameters : 
+    Route parameters are dynamic values included as part of a URL path. In React Router, 
+    they are defined using a colon, such as :id, and can be accessed inside the component 
+    using the useParams() hook.
+
+    Suppose you have:
+
+    /products/101
+    /products/102
+    /products/103
+
+    Instead of creating three routes, we create one:
+
+    <Route path="/products/:id" element={<Product />} />
+
+    Here :id is the route parameter.
+
+    Inside Product:
+
+    import { useParams } from "react-router-dom";
+
+    function Product() {
+    const { id } = useParams();
+
+    return <h1>Product ID: {id}</h1>;
+    }
+
+    If URL is:
+
+    /products/101
+
+    then:
+
+    id === "101"
+    Multiple route parameters
+    <Route
+    path="/users/:userId/orders/:orderId"
+    element={<Order />}
+    />
+
+    URL:
+
+    /users/25/orders/5001
+
+    Then:
+
+    const { userId, orderId } = useParams();
+    userId → "25"
+    orderId → "5001"
+    Short note
+
+    Route Parameter = dynamic value inside the URL path.
+
+
+Query Parameters :
+    Query parameters are key-value pairs added to the URL after a ?. They are commonly used to 
+    represent optional information such as search terms, filters, sorting, or pagination. 
+    In React Router, they can be accessed using the useSearchParams() hook.
+    Suppose you want to search products:
+
+    /products?search=iphone
+
+    Here:
+
+    search = iphone
+
+    is a query parameter.
+
+    Another example:
+
+    /products?category=mobile&sort=price
+
+    There are two query parameters:
+
+    category → mobile
+    sort     → price
+
+    Notice the difference:
+
+    /products/101
+            ↑
+        Route parameter
+
+
+    /products?search=iphone
+            ↑
+        Query parameter
+    Using useSearchParams()
+    import { useSearchParams } from "react-router-dom";
+
+    function Products() {
+    const [searchParams] = useSearchParams();
+
+    const search = searchParams.get("search");
+
+    return <h1>Search: {search}</h1>;
+    }
+
+    For:
+
+    /products?search=iphone
+
+    we get:
+
+    search = "iphone"
+
+
+Protected Routes :
+    A protected route is a route that can only be accessed when a particular condition is 
+    satisfied, usually when the user is authenticated. If the condition is not satisfied, 
+    the application redirects the user to another route, such as a login page.
+    Simple understanding
+
+    Imagine your application has:
+
+    /login
+    /products
+    /profile
+    /admin
+
+    Anyone can access:
+
+    /products
+
+    But only logged-in users should access:
+
+    /profile
+    /admin
+
+    So we protect those routes.
+
+    Think:
+
+    User tries /profile
+            ↓
+    Is user logged in?
+      ↙   ↘
+    Yes     No
+     ↓       ↓
+    Profile    Login
