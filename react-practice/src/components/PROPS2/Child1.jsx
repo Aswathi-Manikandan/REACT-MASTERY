@@ -8,14 +8,13 @@ const Child1 = (props) => {
 
       <h2>Age: {props.age}</h2>
 
-      <h2>Student: {props.IsStudent ? 'Yes' : 'No'}</h2>
+      <h2>Student : {props.IsStudent?'yes':'no'}</h2>
 
-      <h2>Skills:</h2>
-      <p>{props.skills.join(', ')}</p>
+      <h2>Skills :{props.skills.join(',')}</h2>
 
-      <h2>Address:</h2>
-      <p>Place: {props.address.place}</p>
-      <p>House: {props.address.house}</p>
+      <h2>ADDRESS</h2>
+      <p>place : {props.address.place}</p>
+      <p>House Name :{props.address.house}</p>
     </div>
   )
 }
