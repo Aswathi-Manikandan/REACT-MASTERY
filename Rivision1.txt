@@ -83,7 +83,6 @@ Features of React.js :
         =>Efficient UI Updates
         =>Event Handling
         =>Hooks
-        =>Large Ecosystem
         =>Server-Side Rendering Support
         =>Easy Integration with Other Libraries
 
@@ -500,8 +499,7 @@ Props can contain different types of data
         />
 
 Props are read-only :
-        A child component should not modify the props directly.
-        A child component should not modify the props directly.
+        A child component should not modify the props directly..
 
         For example:
 

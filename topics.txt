@@ -28,9 +28,9 @@ Route Parameters
 Query Parameters
 Protected Routes
 404 / Not Found Routes
-Navigation using useNavigate
-useParams
-useLocation
+Navigation using useNavigate====>
+useParams ===>
+useLocation====>
 API & Data Handling
 API Calls
 Fetch API

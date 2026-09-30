@@ -1,0 +1,162 @@
+404 / Not Found Routes in React Router :
+    A 404 or Not Found route is a fallback route that is displayed when the current URL does not 
+    match any of the application's defined routes. In React Router, we can create a catch-all route 
+    using path="*" and render a custom Not Found component.
+Suppose your application has:
+
+    /              → Home
+    /products      → Products
+    /cart          → Cart
+    /login         → Login
+
+    Now the user enters:
+
+    /hello
+
+    But /hello doesn't exist in your routes.
+
+    Instead of showing a blank page, we can show:
+
+    404
+    Page Not Found
+
+
+API & Data Handling :
+    API stands for Application Programming Interface.
+
+    An API is a way for two different software applications to communicate with each other and exchange data.
+
+    For example, your React application may need user or product data from a backend server. 
+    Instead of directly accessing the backend database, React sends a request to an API. 
+    The server processes the request and sends a response back.
+
+    Simple flow:
+
+    React Application
+        ↓
+        API Request
+        ↓
+    Backend / Server
+        ↓
+    Database
+        ↓
+    API Response
+        ↓
+    React Application
+
+Why do we need an API? :
+
+    Suppose you have a shopping application.
+
+    You want to display products:
+
+    iPhone 15
+    Samsung S25
+    AirPods
+
+    These products may be stored in a database.
+
+    Your React frontend needs that data.
+
+    Instead of:
+
+    React → Database ❌
+
+    we generally have:
+
+    React → API → Backend → Database
+
+    The backend can control:
+
+    authentication
+    authorization
+    validation
+    business logic
+    database access
+
+What is an API Request? :
+
+    When the frontend asks the server for something, that is an API request.
+
+    For example:
+
+    GET /api/products
+
+    This means:
+
+    "Give me the products."
+
+    The server processes the request and sends a response
+
+What is an API Response? :
+
+    The server sends the requested result back to the frontend.
+
+    For example:
+
+    {
+    "id": 101,
+    "name": "iPhone 15",
+    "price": 69999
+    }
+
+    This is commonly returned as JSON.
+
+    JSON looks similar to JavaScript objects, which makes it convenient to work with in React.
+
+What is JSON? :
+
+    JSON = JavaScript Object Notation
+
+    It is a common format used for exchanging data between frontend and backend.
+
+    Example:
+
+    {
+    "name": "Aswathi",
+    "age": 22,
+    "city": "Kochi"
+    }
+
+    It can also contain arrays:
+
+    {
+    "products": [
+        {
+        "name": "iPhone 15",
+        "price": 69999
+        },
+        {
+        "name": "AirPods",
+        "price": 24999
+        }
+    ]
+    }
+
+API + React Example :
+
+    Suppose our API is:
+
+    https://example.com/api/products
+
+    React can request the data using fetch():
+
+    fetch("https://example.com/api/products")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    });
+
+    The basic flow is:
+
+    fetch()
+    ↓
+    API Request
+    ↓
+    Server
+    ↓
+    Response
+    ↓
+    response.json()
+    ↓
+    JavaScript data

@@ -1,6 +1,7 @@
 List in React:
 
     In React, a list means displaying multiple similar items from an array.
+    We commonly use JavaScript's map() method to create React elements for each item.
 
     For example, if we have:
 
@@ -60,6 +61,7 @@ creating a list :
     helps React identify each list item between renders.
 
     This is especially useful when items are added, removed, or reordered.
+
 
 3. Why not use index as key?
 
