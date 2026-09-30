@@ -1,9 +1,12 @@
 import React from 'react'
-import First from './components/First'
+import Parent1 from './components/PROPS2/Parent1'
 
 const App = () => {
   return (
-    <First/>
+    <div>
+      <h1>Hello React</h1>
+      <Parent1/>
+    </div>
   )
 }
 
