@@ -1,13 +1,12 @@
 import React from 'react'
-
-import Parent4 from './components/PROPS4/Parent4'
+import Parent7 from './components/PROPS7/Parent7'
 
 
 const App = () => {
   return (
     <div>
       <h1>Hello React</h1>
-        <Parent4/>
+    <Parent7/>
     </div>
   )
 }
