@@ -16,3 +16,5 @@ const Parent7 = () => {
 }
 
 export default Parent7
+
+//THE OUTPUT WILL SHOW IN THEE CONSOLE - LIKE INSPECT THE WEBPAGE 
