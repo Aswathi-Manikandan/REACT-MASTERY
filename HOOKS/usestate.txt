@@ -1,0 +1,60 @@
+HOOKS :
+
+    Hooks are special functions provided by React that allow functional components to use React
+    features such as state, effects, context, refs, and more.
+
+    Before Hooks, state and lifecycle-related features were mainly associated with class components. 
+    Hooks made it possible to use these features in functional components.
+
+    Examples:
+
+    useState      → state
+    useEffect     → side effects
+    useContext    → context
+    useRef        → refs
+    useReducer    → complex state
+    useMemo       → memoization
+    useCallback   → memoized functions
+
+Why were Hooks introduced? :
+
+    Hooks were introduced to make it easier to:
+
+    Use state in functional components
+    Handle side effects
+    Reuse stateful logic
+    Work with context
+    Access DOM elements
+    Organize component logic more clearly
+
+
+What is useState() : 
+    useState is a React Hook that allows a functional component to create and manage state. 
+    It returns the current state value and a setter function used to update that state. 
+    When the state is updated using the setter function, React schedules a re-render so 
+    the UI can reflect the new state.
+
+What does useState() return? :
+    It returns an array containing two values:
+    [currentState, stateUpdater]
+
+Types of State
+
+    useState can store almost any JavaScript value.
+
+Number  :
+    const [age, setAge] = useState(22);
+String  :
+    const [name, setName] = useState("Aswathi");
+Boolean :
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+Array   :
+    const [skills, setSkills] = useState(["JavaScript", "React"]);
+Object  :
+    const [user, setUser] = useState({
+    name: "Aswathi",
+    age: 22
+    }); 
+
+Syntax of useState() :
+    const [state, setState] = useState(initialValue);
