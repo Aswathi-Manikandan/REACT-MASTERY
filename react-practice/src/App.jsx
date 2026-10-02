@@ -1,12 +1,11 @@
 import React from 'react'
-import ShowHide from './components/USESTATE/ShowHide'
-import Multiple from './components/USESTATE/Multiple'
+import Toggle from './components/USESTATE/Toggle'
 
 const App = () => {
   return (
     <div>
       <h1>HELLO FROM APP</h1>
-      <Multiple/>
+      <Toggle/>
     </div>
   )
 }
