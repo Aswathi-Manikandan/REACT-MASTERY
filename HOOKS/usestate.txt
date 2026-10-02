@@ -56,5 +56,129 @@ Object  :
     age: 22
     }); 
 
+Functional State Update :
+    When the new state depends on the previous state, use the functional updater.
+
+    setCount(prevCount => prevCount + 1);
+
+    Here:
+
+    prevCount → previous state value
+
+    Example:
+
+    const [count, setCount] = useState(0);
+
+    setCount(prevCount => prevCount + 1);
+
+    If count is 0:
+
+    previous value = 0
+    0 + 1 = 1
+
+Why use Functional Updater? :
+
+    Consider:
+
+    setCount(count + 1);
+    setCount(count + 1);
+
+    Both updates may be based on the same value from the current render.
+
+    When multiple updates depend on the previous state, prefer:
+
+    setCount(prev => prev + 1);
+    setCount(prev => prev + 1);
+
+    This tells React:
+
+    "Take the latest previous state and calculate the next state from it."
+
+
+Multiple useState   :
+
+    A component can have multiple state variables.
+
+    const [name, setName] = useState("Aswathi");
+    const [age, setAge] = useState(22);
+    const [isOnline, setIsOnline] = useState(true);
+
+    Each state has its own:
+
+    state value
+    +
+    setter function
+
+
+Updating Objects in State   :
+
+    Suppose:
+
+    const [user, setUser] = useState({
+    name: "Aswathi",
+    age: 22
+    });
+
+    To change only age:
+
+    setUser({
+    ...user,
+    age: 23
+    });
+
+    The spread operator keeps the existing properties and changes age.
+
+    ❌ Avoid directly mutating:
+
+    user.age = 23;
+
+Updating Arrays in State    :
+    const [skills, setSkills] = useState([
+    "JavaScript",
+    "React"
+    ]);
+
+    To add a skill:
+
+    setSkills([
+    ...skills,
+    "MongoDB"
+    ]);
+
+    Result:
+
+    ["JavaScript", "React", "MongoDB"]
+
+Rules of Hooks  :
+
+    There are important rules when using Hooks.
+
+    Rule 1 — Call Hooks at the top level
+
+    ✅ Correct:
+
+    function App() {
+    const [count, setCount] = useState(0);
+    }
+
+    ❌ Don't call inside if:
+
+    if (condition) {
+    useState(0);
+    }
+
+    ❌ Don't call inside loops:
+
+    for (...) {
+    useState(0);
+    }
+    Rule 2 — Hooks should be used in React functions
+
+    Hooks can be used in:
+
+    Functional components
+    Custom Hooks
+
+
 Syntax of useState() :
     const [state, setState] = useState(initialValue);
