@@ -10,6 +10,8 @@ import Object2 from './components/USESTATE/Object2'
 import Object3 from './components/USESTATE/Object3'
 import Object4 from './components/USESTATE/Object4'
 import Object5 from './components/USESTATE/Object5'
+import Number from './components/USESTATE/Number'
+import Number1 from './components/USESTATE/Number1'
 
 
 
@@ -17,7 +19,7 @@ const App = () => {
   return (
     <div>
       <h1>HELLO FROM APP</h1>
-<Object5/>
+<Number1/>
     </div>
   )
 }
