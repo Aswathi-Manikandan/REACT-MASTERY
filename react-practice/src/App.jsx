@@ -15,6 +15,7 @@ import Number1 from './components/USESTATE/Number1'
 import Message from './components/USESTATE/Message'
 import Click from './components/USESTATE/Click'
 import Color from './components/USESTATE/Color'
+import Font from './components/USESTATE/Font'
 
 
 
@@ -22,7 +23,7 @@ const App = () => {
   return (
     <div>
       <h1>HELLO FROM APP</h1>
-<Color/>
+<Font/>
     </div>
   )
 }
