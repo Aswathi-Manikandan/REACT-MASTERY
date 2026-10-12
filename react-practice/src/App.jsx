@@ -12,6 +12,9 @@ import Object4 from './components/USESTATE/Object4'
 import Object5 from './components/USESTATE/Object5'
 import Number from './components/USESTATE/Number'
 import Number1 from './components/USESTATE/Number1'
+import Message from './components/USESTATE/Message'
+import Click from './components/USESTATE/Click'
+import Color from './components/USESTATE/Color'
 
 
 
@@ -19,7 +22,7 @@ const App = () => {
   return (
     <div>
       <h1>HELLO FROM APP</h1>
-<Number1/>
+<Color/>
     </div>
   )
 }
